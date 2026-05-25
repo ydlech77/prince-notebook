@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prince Dave Notebook</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            margin: 0;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* SEARCH BAR */
+        .search-box {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .search-box input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        /* BUTTON LEFT */
+        .top-bar {
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 15px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        /* GRID */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 20px;
+            gap: 15px;
+        }
+
+        /* NOTE CARD */
+        .note {
+            background: #fff8a6;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            min-height: 180px;
+            position: relative;
+            cursor: grab;
+        }
+
+        .note:hover {
+            transform: scale(1.02);
+        }
+
+        .note h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .note small {
+            color: gray;
+            font-size: 12px;
+        }
+
+        .note p {
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        img, video {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        /* COLORS */
+        .yellow { background: #fff8a6; }
+
+        /* MOBILE 2x2 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 10px;
+                gap: 10px;
+            }
+        }
+
+        .open-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .open-btn:hover {
+            background: #0056b3;
+        }
+
+        /* 🔒 LOCK BADGE */
+        .lock-badge {
+            font-size: 11px;
+            background: #ff4d4d;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    📒 Prince Dave Notebook
+</header>
+
+<!-- LEFT BUTTON -->
+<div class="top-bar">
+    <a class="btn" href="/create/">+ Create Note</a>
+</div>
+
+<!-- SEARCH -->
+<div class="search-box">
+    <input type="text" id="search" placeholder="Search notes...">
+</div>
+
+<div class="container" id="noteContainer">
+
+    {% for note in notes %}
+
+        <div class="note yellow draggable">
+
+            <h3>
+                {{ note.title }}
+
+                {% if note.password %}
+                    <span class="lock-badge">🔒 Locked</span>
+                {% endif %}
+            </h3>
+
+            <small>{{ note.created_at }}</small>
+
+            <p>{{ note.content|truncatechars:80 }}</p>
+
+            {% if note.image %}
+                <img src="{{ note.image.url }}">
+            {% endif %}
+
+            {% if note.video %}
+                <video controls>
+                    <source src="{{ note.video.url }}">
+                </video>
+            {% endif %}
+
+            <br>
+
+            <a class="open-btn" href="/note/{{ note.id }}/">Open</a>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<!-- SEARCH SCRIPT -->
+<script>
+document.getElementById("search").addEventListener("keyup", function() {
+    let value = this.value.toLowerCase();
+    let notes = document.querySelectorAll(".note");
+
+    notes.forEach(note => {
+        let text = note.innerText.toLowerCase();
+        note.style.display = text.includes(value) ? "block" : "none";
+    });
+});
+</script>
+
+</body>
+</html>

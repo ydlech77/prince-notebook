@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Note</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        .box {
+            background: white;
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            background: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 95%;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>📝 Create Sticky Note</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input name="title" placeholder="Title">
+
+        <textarea name="content" placeholder="Write your note..."></textarea>
+
+        <input type="file" name="file">
+
+        <input name="password" placeholder="Password (optional)">
+
+        <button>Create</button>
+    </form>
+
+</div>
+
+</body>
+</html>
