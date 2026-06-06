@@ -4,34 +4,75 @@
     <title>Create Note</title>
 
     <style>
-        body {
-            font-family: Arial;
-            background: #f4f4f4;
-            text-align: center;
-        }
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    margin: 0;
 
-        .box {
-            background: white;
-            width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            border-radius: 10px;
-        }
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
 
-        input, textarea {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-        }
+/* APP HEADER STYLE */
+h2 {
+    background: #111;
+    color: white;
+    margin: 0;
+    padding: 15px;
+    font-size: 18px;
+}
 
-        button {
-            background: black;
-            color: white;
-            padding: 10px;
-            border: none;
-            width: 95%;
-        }
-    </style>
+/* FORM CONTAINER */
+.box {
+    background: white;
+    padding: 15px;
+}
+
+/* INPUTS */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* TEXTAREA HEIGHT */
+textarea {
+    height: 120px;
+}
+
+/* FILE INPUT */
+input[type="file"] {
+    background: #fff;
+}
+
+/* BUTTON */
+button {
+    background: black;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* MOBILE IMPROVEMENT */
+@media (max-width: 768px) {
+    body {
+        border: none;
+    }
+}
+</style>
+
+
 </head>
 
 <body>

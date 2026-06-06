@@ -4,62 +4,73 @@
     <title>Unlock Note</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f4f8;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 60px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
 
-        .title {
-            margin-bottom: 20px;
-            color: #333;
-        }
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 300px;
-            text-align: center;
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
 
-        .input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            outline: none;
-        }
+/* TITLE */
+.title {
+    margin-bottom: 20px;
+    color: #111;
+    font-size: 20px;
+}
 
-        .input:focus {
-            border-color: #007bff;
-        }
+/* CARD */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 90%;
+    text-align: center;
+}
 
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+/* INPUT */
+.input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+}
 
-        .btn:hover {
-            background: #0056b3;
-        }
+/* BUTTON */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
 
-        .error {
-            color: red;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-    </style>
+/* ERROR */
+.error {
+    color: red;
+    margin-top: 10px;
+    font-size: 13px;
+}
+</style>
+
+
 </head>
 
 <body>
