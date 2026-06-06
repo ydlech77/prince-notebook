@@ -36,28 +36,29 @@ def view_note(request, note_id):
 
     note = get_object_or_404(Note, id=note_id)
 
-    session_key = f'note_{note.id}'
+    session_key = f'note_{note.id}_unlocked'
 
     # =========================
     # PASSWORD CHECK
     # =========================
-    if note.password and not request.session.get(session_key):
+    if note.password is not None and note.password != "":
 
-        if request.method == "POST":
+        if not request.session.get(session_key):
 
-            entered_password = request.POST.get('unlock_password')
+            if request.method == "POST":
 
-            if entered_password == note.password:
-                request.session[session_key] = True
-                return redirect(f'/note/{note.id}/')  # 🔥 IMPORTANT FIX
-            else:
-                return render(request, 'unlock.html', {
-                    'note': note,
-                    'error': 'Wrong password'
-                })
+                entered_password = request.POST.get('unlock_password')
 
-        return render(request, 'unlock.html', {'note': note})
+                if entered_password == note.password:
+                    request.session[session_key] = True
+                    return redirect(f'/note/{note.id}/')
+                else:
+                    return render(request, 'unlock.html', {
+                        'note': note,
+                        'error': 'Wrong password'
+                    })
 
+            return render(request, 'unlock.html', {'note': note})
 
     # =========================
     # UPDATE NOTE
@@ -77,10 +78,12 @@ def view_note(request, note_id):
 
             file_type = "file"
 
-            if f.content_type.startswith('image'):
+            content_type = getattr(f, 'content_type', '')
+
+            if content_type.startswith('image'):
                 file_type = "image"
 
-            elif f.content_type.startswith('video'):
+            elif content_type.startswith('video'):
                 file_type = "video"
 
             NoteMedia.objects.create(
@@ -97,7 +100,6 @@ def view_note(request, note_id):
         'note': note,
         'media': media
     })
-
 
 # =========================
 # DELETE NOTE
