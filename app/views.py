@@ -58,11 +58,6 @@ def view_note(request, note_id):
 
         return render(request, 'unlock.html', {'note': note})
 
-    # =========================
-    # SHOW NOTE (UNLOCKED)
-    # =========================
-    return render(request, 'note.html', {'note': note})
-
 
     # =========================
     # UPDATE NOTE
